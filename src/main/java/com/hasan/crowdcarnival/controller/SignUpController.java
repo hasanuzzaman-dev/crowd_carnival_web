@@ -25,7 +25,7 @@ public class SignUpController {
     @Autowired
     private UserRepository userRepository;
 
-    // Handler for registering user
+/*    // Handler for registering user
     @RequestMapping(value = "/do_register", method = RequestMethod.POST)
     public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
                                @RequestParam(value = "agreement", defaultValue = "false") Boolean agreement,
@@ -69,4 +69,53 @@ public class SignUpController {
 
 
     }
+
+    */
+
+    // Handler for registering user
+    @RequestMapping(value = "/do_register", method = RequestMethod.POST)
+    public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
+                               @RequestParam(value = "agreement", defaultValue = "false") Boolean agreement,
+                               Model model,
+                               HttpSession session) {
+
+        try {
+
+            if (!agreement) {
+                System.out.println("You have not agreed the terms & conditions");
+                throw new Exception("You have not agreed the terms & conditions");
+            }
+            if (bindingResult.hasErrors()){
+                model.addAttribute("user", user);
+                return "signUp2";
+            }
+            user.setRole("ROLE_USER");
+            user.setEnabled(true);
+            user.setImageUrl("default.png");
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+            System.out.println("USER: " + user.toString());
+            System.out.println("AGREEMENT: " + agreement);
+
+            User savedUser = this.userRepository.save(user);
+
+            // Show empty user in frontend
+            model.addAttribute("user", new User());
+
+            session.setAttribute("message",new MyMessage("Successfully Registered!! ", "alert-success"));
+
+            return "signUp2";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("user", user);
+            session.setAttribute(
+                    "message",
+                    new MyMessage("Something went wrong !! " + e.getMessage(), "alert-danger")
+            );
+            return "signUp2";
+        }
+
+
+    }
+
+
 }
