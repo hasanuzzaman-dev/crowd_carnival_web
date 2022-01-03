@@ -28,19 +28,19 @@ public class HomeController {
 
     @RequestMapping("/")
     private String home(Model model){
-        model.addAttribute("title", "Home - Smart Contact Manager");
+        model.addAttribute("title", "Home - Crowd Carnival");
         return "home";
     }
 
     @RequestMapping("/about")
     private String about(Model model){
-        model.addAttribute("title", "About - Smart Contact Manager");
+        model.addAttribute("title", "About - Crowd Carnival");
         return "about";
     }
 
     @RequestMapping("/signUp")
     private String signUp(Model model){
-        model.addAttribute("title", "SignUp - Smart Contact Manager");
+        model.addAttribute("title", "SignUp - Crowd Carnival");
         model.addAttribute("user", new User());
         return "signUp";
     }
@@ -48,7 +48,7 @@ public class HomeController {
     // handler for custom login
     @GetMapping("/signIn")
     public String customLogin(Model model){
-        model.addAttribute("title","Login - Smart Contact Manager");
+        model.addAttribute("title","Login - Crowd Carnival");
         return "login";
     }
 
