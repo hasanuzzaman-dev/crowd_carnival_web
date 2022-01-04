@@ -14,6 +14,15 @@ const toggleSidebar = () => {
     }
 };
 
+const loadFile = function (event) {
+    const output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+        // $(".photoDiv").css("display","block");
+        URL.revokeObjectURL(output.src) // free memory
+    }
+};
+
 const search = () => {
     console.log("Searching......");
     let query = $("#search-input").val();

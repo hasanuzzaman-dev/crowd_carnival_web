@@ -8,13 +8,13 @@
 }*/
 
 /* Style the input fields */
-input {
+/*input {
     padding: 10px;
     width: 100%;
     font-size: 17px;
     font-family: Raleway, serif;
     border: 1px solid #aaaaaa;
-}
+}*/
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
@@ -31,7 +31,7 @@ input.invalid {
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: #bbbbbb;
+    background-color: #024649;
     border: none;
     border-radius: 50%;
     display: inline-block;
