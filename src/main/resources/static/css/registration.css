@@ -47,3 +47,37 @@ input.invalid {
 .step.finish {
     background-color: #04AA6D;
 }
+
+
+/*buttons*/
+#regForm .action-button {
+    width: 100px;
+    background: #024649;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#regForm .action-button:hover, #regForm .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #024649;
+}
+
+#regForm .action-button-previous {
+    width: 100px;
+    background: #C5C5F1;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#regForm .action-button-previous:hover, #regForm .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
+}
