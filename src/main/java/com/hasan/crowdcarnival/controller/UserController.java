@@ -99,7 +99,7 @@ public class UserController {
                 String uploadDirectory = userDirectory + "\\uploadImg";
                 */
                 // image save to static folder
-                File saveFile = new ClassPathResource("static/img/contactImage").getFile();
+                File saveFile = new ClassPathResource("static/img").getFile();
 
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
                 Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
