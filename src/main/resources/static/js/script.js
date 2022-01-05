@@ -13,7 +13,7 @@ const toggleSidebar = () => {
 
     }
 };
-
+/*Load user image*/
 const loadFile = function (event) {
     const output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
