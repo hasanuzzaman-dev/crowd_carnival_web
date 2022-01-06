@@ -1,17 +1,22 @@
-body{
+body {
     background: darkgray;
 }
-.bg-custom-primary{
+
+.bg-custom-primary {
     background: #024649;
 }
-.banner{
+
+.banner {
     width: 100%;
     height: 93vh;
-    background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(../img/banner.png);
-    color: white;
+    /*background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(../img/banner.png);*/
+    /*background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(../img/home_logo.png);*/
+    color: black;
+    background: white;
     background-size: cover;
 }
-.my-card{
+
+.my-card {
     padding: 20px;
     background: white;
     /*border-radius: 20px;*/
@@ -25,15 +30,17 @@ body{
     background-color: white;
     border-radius: 20px;
 }
+
 #login .container #login-row #login-column #login-box #login-form {
     padding: 20px;
 }
+
 #login .container #login-row #login-column #login-box #login-form #register-link {
     margin-top: -55px;
 }
 
-@media only screen and (max-width: 600px){
-    .sidebar{
+@media only screen and (max-width: 600px) {
+    .sidebar {
         display: none;
         width: 80% !important;
         background: white;
@@ -42,13 +49,15 @@ body{
         padding-top: 20px;
 
     }
-    .content{
+
+    .content {
         margin-left: 0 !important;
 
     }
 }
+
 /*Sidebar style*/
-.sidebar{
+.sidebar {
     width: 18%;
     background: white;
     height: 100%;
@@ -57,17 +66,20 @@ body{
     z-index: 9999999999999999999999999999999999999;
 
 }
-.sidebar a{
+
+.sidebar a {
     display: block;
     width: 100%;
     padding: 10px 25px;
     color: gray;
     text-decoration: none;
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
     background: darkgray;
 }
-.sidebar .crossBtn{
+
+.sidebar .crossBtn {
     position: absolute;
     top: 0;
     right: 35px;
@@ -75,32 +87,37 @@ body{
     cursor: pointer;
 
 }
-.sidebar .divider{
+
+.sidebar .divider {
     height: 1px;
     width: 100%;
     background: darkgray;
     margin-top: 10px;
 }
+
 /* Sidebar End */
 
 /*Content style*/
-.content{
+.content {
     margin-left: 20%;
 
 }
-.my-profile-picture{
+
+.my-profile-picture {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-   /* border: 1px solid black;*/
+    /* border: 1px solid black;*/
 }
+
 /*Search css*/
-.search-container{
+.search-container {
     position: relative;
 
 }
-.search-result{
+
+.search-result {
     position: absolute;
     background: white;
     width: 100%;
