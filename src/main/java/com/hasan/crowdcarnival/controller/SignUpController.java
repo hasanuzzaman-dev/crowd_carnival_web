@@ -129,10 +129,11 @@ public class SignUpController {
 
             }
 
-
-            List<Address> addresses = new ArrayList<>();
-            addresses.get(0).setUser(user);
-            addresses.get(1).setUser(user);
+           List<Address> addressList = user.getAddress();
+            System.out.println("Size: "+addressList.size());
+            for (Address address: addressList){
+                address.setUser(user);
+            }
 
             userImage.setUser(user);
             user.setRole("ROLE_USER");
