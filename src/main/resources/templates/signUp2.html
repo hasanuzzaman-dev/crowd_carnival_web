@@ -122,37 +122,39 @@
                         <!-- Start Tab 2 Addresses-->
                         <div class="tab">
                             <h1 class="text-center">Address</h1>
+                            <!------------- Present Address ---------->
                             <h3>Present Address</h3>
                             <div class="present-address">
                                 <!--House Number & Name-->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="houseNumber" class="form-label">House Number<span style="color: red">*</span> </label>
-                                        <input type="text" class="form-control" required = "required" id="houseNumber" placeholder="House Number">
+                                        <label for="houseNumber" class="form-label">House Number & House Name<span style="color: red">*</span> </label>
+                                        <input type="text" class="form-control" required = "required" id="houseNumber"
+                                               name="house"
+                                               th:field ="*{address[0].house}"
+                                               th:classappend="${#fields.hasErrors('address[0].house')?'is-invalid':''}"
+                                               placeholder="House Number">
+
+                                        <div class="invalid-feedback mb-3" th:each="e:${#fields.errors('address[0].house')}" th:text="${e}"></div>
                                     </div>
                                     <div class="col">
-                                        <label for="houseName" class="form-label">House Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" id="houseName" placeholder="House Name">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Lane Number<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" id="laneNumber" placeholder="Lane Number">
+                                        <label class="form-label">Lane Number & Name<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required = "required"
+                                               th:field ="*{address[0].lane}"
+                                               id="laneNumber" placeholder="Lane Number">
                                     </div>
                                 </div>
                                 <!--Lane Number & Road Number & Road Name-->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label  class="form-label">Lane Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" id="laneName" placeholder="Lane Name">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Road Number<span style="color: red">*</span></label>
+                                        <label class="form-label">Road Number & Name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" id="roadNumber" placeholder="Road Number">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">Road Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" id="roadName" placeholder="Road Name">
+                                        <label class="form-label">Village<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required = "required" placeholder="Village">
                                     </div>
+
                                 </div>
                                 <!--Post Office and Post Code-->
                                 <div class="row mb-3">
@@ -166,25 +168,21 @@
                                     </div>
                                 </div>
 
-                                <!--Village and Police Station-->
+                                <!--Upozella and Police Station-->
                                 <div class="row mb-3">
-                                    <div class="col">
-                                        <label class="form-label">Village<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Village">
-                                    </div>
+
                                     <div class="col">
                                         <label  class="form-label">Police Station<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Police Station">
                                     </div>
-                                </div>
-
-
-                                <!--Upozella and District-->
-                                <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Upozella<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Upozella">
                                     </div>
+                                </div>
+
+                                <!-------------- District ----------->
+                                <div class="row mb-3">
                                     <div class="col">
                                         <label  class="form-label">District<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="District">
@@ -211,50 +209,43 @@
                                 <label class="form-check-label" for="flexCheckDefault">Same as present Address</label>
                             </div>
                             <div class="permanent-address">
-                                <!--House Number & Name-->
+                                <!--Permanent House & Lane-->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="houseNumber" class="form-label">House Number<span style="color: red">*</span></label>
+                                        <label for="houseNumber" class="form-label">House Number & House Name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="House Number">
                                     </div>
                                     <div class="col">
-                                        <label for="houseName" class="form-label">House Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="House Name">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Lane Number<span style="color: red">*</span></label>
+                                        <label class="form-label">Lane Number & Name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Lane Number">
                                     </div>
                                 </div>
-                                <!--Lane Name,Road Number & Road Name-->
+                                <!-------Permanent Road  & Village ------------>
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label  class="form-label">Lane Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Lane Name">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Road Number<span style="color: red">*</span></label>
+                                        <label class="form-label">Road Number & Name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Road Number">
                                     </div>
-                                    <div class="col">
-                                        <label  class="form-label">Road Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Road Name">
-                                    </div>
-                                </div>
-
-                                <!--Village and Police Station-->
-                                <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Village<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Village">
                                     </div>
+
+                                </div>
+
+                                <!--------------Permanent Police Station & Village ----------->
+                                <div class="row mb-3">
                                     <div class="col">
                                         <label  class="form-label">Police Station<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Police Station">
                                     </div>
+                                    <div class="col">
+                                        <label class="form-label">Upozella<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required = "required" placeholder="Upozella">
+                                    </div>
                                 </div>
 
-                                <!--Post Office and Post Code-->
+                                <!-------------Permanent Post Office and Post Code----------------->
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Post Office<span style="color: red">*</span></label>
@@ -266,19 +257,15 @@
                                     </div>
                                 </div>
 
-                                <!--Upozella and District-->
+                                <!-----------------Permanent District----------->
                                 <div class="row mb-3">
-                                    <div class="col">
-                                        <label class="form-label">Upozella<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Upozella">
-                                    </div>
                                     <div class="col">
                                         <label  class="form-label">District<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="District">
                                     </div>
                                 </div>
 
-                                <!--Nearest Landmark & Google Map-->
+                                <!-----------------Permanent Nearest Landmark & Google Map---------------->
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nearest Landmark<span style="color: red">*</span></label>
@@ -291,15 +278,15 @@
                                 </div>
                             </div>
                         </div>
-                        <!--End Tab 2 Addresses-->
+                        <!---------------------End Tab 2  Addresses------------------------>
 
-                        <!--Start Tab 3 -->
-                        <!--Nominee Details  -->
+                        <!----------------------Start Tab 3 -------------------------------->
+                        <!-----------------------Nominee Details  --------------------------->
                         <div class="tab">
                             <h1 class="text-center">Nominee Details</h1>
                             <div class="nominee-details">
 
-                                <!--Nominee Name & Relationship-->
+                                <!------------Nominee Name & Relationship--------------------->
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nominee Name<span style="color: red">*</span></label>
@@ -311,55 +298,45 @@
                                     </div>
                                 </div>
 
-                                <!--Nominee Phone & Percentage-->
+                                <!---------------------Nominee Phone & Percentage--------------------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label class="form-label">Nominee Name<span style="color: red">*</span></label>
+                                        <label class="form-label">Nominee Phone<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Nominee Phone">
                                     </div>
                                     <div class="col">
-                                        <label class="form-label">Nominee Relationship<span style="color: red">*</span></label>
+                                        <label class="form-label">Nominee Percentage<span style="color: red">*</span></label>
                                         <input type="number" class="form-control" required = "required" placeholder="Nominee Percentage">
                                     </div>
                                 </div>
 
-                                <!--House Number & Name-->
+                                <!-----------Nominee House Number & Name------------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="houseNumber" class="form-label">House Number<span style="color: red">*</span></label>
+                                        <label for="houseNumber" class="form-label">House Name,Number<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="House Number">
                                     </div>
+
                                     <div class="col">
-                                        <label for="houseName" class="form-label">House Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="House Name">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Lane Number<span style="color: red">*</span></label>
+                                        <label class="form-label">Lane Name,Number<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Lane Number">
                                     </div>
                                 </div>
-                                <!--Lane Number & Name-->
+                                <!--------------Nominee Lane Number & Name-------------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label  class="form-label">Lane Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Lane Name">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label">Road Number<span style="color: red">*</span></label>
+                                        <label class="form-label">Road Name,Number<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Road Number">
                                     </div>
-                                    <div class="col">
-                                        <label  class="form-label">Road Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Road Name">
-                                    </div>
-                                </div>
-
-                                <!--Village and Police Station-->
-                                <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Village<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Village">
                                     </div>
+
+                                </div>
+
+                                <!------------ Post office and Code------------>
+                                <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Post Office<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" required = "required" placeholder="Post Office">
@@ -371,7 +348,7 @@
 
                                 </div>
 
-                                <!--Upozella and District-->
+                                <!-----------------Nominee Upozella and District------------------->
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label  class="form-label">Police Station<span style="color: red">*</span></label>
@@ -387,7 +364,7 @@
                                     </div>
                                 </div>
 
-                                <!--Nearest Landmark & Google Map-->
+                                <!-------------Nominee The Nearest Landmark & Google Map----------->
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nearest Landmark</label>
@@ -399,13 +376,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--Terms & Condition-->
+                            <!-----------------Terms & Condition----------------->
                             <div class="mb-3 form-check">
                                 <input type="checkbox" name="agreement" class="form-check-input" required="required" id="agreement">
                                 <label class="form-check-label" for="agreement">Terms & Condition</label>
                             </div>
                         </div>
-                        <!--End Tab(Nominee Details) 3 -->
+                        <!--------------End Tab(Nominee Details) 3 ------------->
 
 
 
@@ -421,7 +398,7 @@
                             </div>
                         </div>
 
-                        <!-- Circles which indicates the steps of the form: -->
+                        <!---------------- Circles which indicates the steps of the form: -------------->
                         <div style="text-align:center;margin-top:40px;">
                             <span class="step"></span>
                             <span class="step"></span>

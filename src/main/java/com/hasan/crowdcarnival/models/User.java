@@ -50,6 +50,9 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private UserImage userImage;
 
+    @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Address> address;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Nominee> nominees = new ArrayList<>();
 
@@ -175,6 +178,14 @@ public class User {
 
     public void setUserImage(UserImage userImage) {
         this.userImage = userImage;
+    }
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
     }
 
     public List<Nominee> getNominees() {
