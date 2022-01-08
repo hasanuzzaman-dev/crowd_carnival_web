@@ -51,7 +51,7 @@
                             <div class="mb-3">
                                 <label for="email_field" class="form-label">Email<span style="color: red">*</span></label>
                                 <input type="email" class="form-control" required = "required"
-                                       id="email_field" name="email"
+                                       id="email_field" name="email" onfocus="this.value=''"
                                        th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
                                        th:value="${user.email}"
                                        placeholder="Enter your email">
@@ -70,7 +70,7 @@
                             <div class="mb-3">
                                 <label for="password_field" class="form-label">Password</label>
                                 <input type="password" name="password"
-                                       class="form-control" id="password_field" required="required" placeholder="Enter your password"
+                                       class="form-control" id="password_field" required="required" placeholder="Enter your password" onfocus="this.value=''"
                                        th:value="${user.password}" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
                                        aria-describedby="emailHelp">
                                 <div class="invalid-feedback mb-3" th:each="e:${#fields.errors('password')}" th:text="${e}"></div>
@@ -124,7 +124,7 @@
                             <h1 class="text-center">Address</h1>
                             <!------------- Present Address ---------->
                             <h3>Present Address</h3>
-                            <div class="present-address">
+                            <div class="present-address" id="presentAddressDiv">
                                 <!--House Number & Name-->
                                 <div class="row mb-3">
                                     <div class="col">
@@ -132,10 +132,7 @@
                                         <input type="text" class="form-control" required = "required" id="houseNumber"
                                                name="house"
                                                th:field ="*{address[0].house}"
-                                               th:classappend="${#fields.hasErrors('address[0].house')?'is-invalid':''}"
                                                placeholder="House Number">
-
-                                        <div class="invalid-feedback mb-3" th:each="e:${#fields.errors('address[0].house')}" th:text="${e}"></div>
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Lane Number & Name<span style="color: red">*</span></label>
@@ -148,11 +145,14 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Road Number & Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" id="roadNumber" placeholder="Road Number">
+                                        <input type="text" class="form-control" required = "required"
+                                               th:field ="*{address[0].road}"
+                                               id="roadNumber" placeholder="Road Number">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Village<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Village">
+                                        <input type="text" class="form-control"   th:field ="*{address[0].village}"
+                                               required = "required" placeholder="Village">
                                     </div>
 
                                 </div>
@@ -160,11 +160,11 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Post Office<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Post Office">
+                                        <input type="text" class="form-control"   th:field ="*{address[0].postOffice}"required = "required" placeholder="Post Office">
                                     </div>
                                     <div class="col">
                                         <label  class="form-label">Post Code<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Post Code">
+                                        <input type="text" class="form-control"   th:field ="*{address[0].postCode}"required = "required" placeholder="Post Code">
                                     </div>
                                 </div>
 
@@ -173,11 +173,11 @@
 
                                     <div class="col">
                                         <label  class="form-label">Police Station<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Police Station">
+                                        <input type="text" class="form-control" required = "required"   th:field ="*{address[0].policeStation}"placeholder="Police Station">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Upozella<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Upozella">
+                                        <input type="text" class="form-control"   th:field ="*{address[0].upozella}"required = "required" placeholder="Upozella">
                                     </div>
                                 </div>
 
@@ -185,7 +185,7 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label  class="form-label">District<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="District">
+                                        <input type="text" class="form-control"   th:field ="*{address[0].district}"required = "required" placeholder="District">
                                     </div>
                                 </div>
 
@@ -193,11 +193,11 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nearest Landmark<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Nearest Landmark">
+                                        <input type="text" class="form-control" th:field ="*{address[0].nearestLandMark}" required = "required" placeholder="Nearest Landmark">
                                     </div>
                                     <div class="col">
                                         <label  class="form-label">Google Map</label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Google Map">
+                                        <input type="text" class="form-control" th:field ="*{address[0].googleMap}" required = "required" placeholder="Google Map">
                                     </div>
                                 </div>
                             </div>
@@ -205,10 +205,10 @@
                             <!------ Permanent Address ---------->
                             <h3 class="mb-3">Permanent Address</h3>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">Same as present Address</label>
+                                <input class="form-check-input" type="checkbox" value="" id="sameAsPresentAddress" onclick="clickCheckBox()">
+                                <label class="form-check-label" style="color: blue" for="sameAsPresentAddress">Same as present address</label>
                             </div>
-                            <div class="permanent-address">
+                            <div class="permanent-address" id="permanentAddressDiv">
                                 <!--Permanent House & Lane-->
                                 <div class="row mb-3">
                                     <div class="col">
