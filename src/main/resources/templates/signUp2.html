@@ -290,11 +290,11 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nominee Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Nominee name">
+                                        <input type="text" class="form-control" th:field="*{nominees[0].nomineeName}" required = "required" placeholder="Nominee name">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Nominee Relationship<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Nominee Relationship">
+                                        <input type="text" class="form-control"th:field="*{nominees[0].nomineeRelationShip}" required = "required" placeholder="Nominee Relationship">
                                     </div>
                                 </div>
 
