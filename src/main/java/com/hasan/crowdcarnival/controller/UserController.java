@@ -58,7 +58,7 @@ public class UserController {
     // Open add form handler
     @GetMapping("/add-contact")
     public String openAddContactForm(Model model) {
-        model.addAttribute("title", "Add Contact");
+        model.addAttribute("title", "Add Project");
         model.addAttribute("contact", new Contact());
         return "normal/add_contact_form";
     }

@@ -70,3 +70,25 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
+
+/* Same as present address*/
+
+function clickCheckBox(){
+    console.log("click");
+    let checkBox = document.getElementById("sameAsPresentAddress");
+    if (checkBox.checked === true){
+        let presentAddressInput = document.getElementById("presentAddressDiv").getElementsByTagName('input');
+        let permanentAddressInput = document.getElementById("permanentAddressDiv").getElementsByTagName('input');
+
+        for (let i= 0; i<presentAddressInput.length; i++){
+            permanentAddressInput.item(i).value = presentAddressInput.item(i).value;
+            permanentAddressInput.item(i).disabled = true;
+        }
+    }else {
+        let permanentAddressInput = document.getElementById("permanentAddressDiv").getElementsByTagName('input');
+        for (let i= 0; i<permanentAddressInput.length; i++){
+            permanentAddressInput.item(i).value = '';
+            permanentAddressInput.item(i).disabled = false;
+        }
+    }
+}

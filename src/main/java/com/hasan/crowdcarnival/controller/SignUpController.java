@@ -1,6 +1,7 @@
 package com.hasan.crowdcarnival.controller;
 
 import com.hasan.crowdcarnival.helper.MyMessage;
+import com.hasan.crowdcarnival.models.Address;
 import com.hasan.crowdcarnival.models.User;
 import com.hasan.crowdcarnival.models.UserImage;
 import com.hasan.crowdcarnival.repositories.UserRepository;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -24,6 +26,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SignUpController {
@@ -125,7 +129,11 @@ public class SignUpController {
 
             }
 
-
+           List<Address> addressList = user.getAddress();
+            System.out.println("Size: "+addressList.size());
+            for (Address address: addressList){
+                address.setUser(user);
+            }
 
             userImage.setUser(user);
             user.setRole("ROLE_USER");
