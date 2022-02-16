@@ -44,13 +44,15 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/init/**").hasAnyAuthority("USER","ADMIN","INITIAL")
+                .antMatchers("/initial/**").hasAnyAuthority("INITIAL","ADMIN")
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin().loginPage("/signIn")
                 .loginProcessingUrl("/doLogin")
-                .defaultSuccessUrl("/user/index")
+                .defaultSuccessUrl("/init/index")
                // .failureUrl("/login-fail")
                 .and()
                 .csrf().disable();

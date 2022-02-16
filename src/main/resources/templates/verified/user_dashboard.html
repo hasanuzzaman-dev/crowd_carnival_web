@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      th:replace="verified/base::layout(~{::section})">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -22,8 +24,13 @@
                <h1 class="text-center mt-3 text-secondary fst-italic">
                    Start adding your project on Crowd Carnival....
                </h1>
-               <a th:href="@{/user/add-contact}" class="btn btn-primary mt-4 text-uppercase d-grid">Add new Project</a>
+             <!--  <a th:href="@{/user/add-contact}" class="btn btn-primary mt-4 text-uppercase d-grid">Add new Project</a>-->
            </div>
+       </div>
+
+       <div>
+           <span sec:authentication="name">Username</span>
+           <span sec:authentication="principal.authorities">Roles</span>
        </div>
 
    </div>

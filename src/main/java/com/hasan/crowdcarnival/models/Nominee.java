@@ -3,10 +3,11 @@ package com.hasan.crowdcarnival.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "nominee")
-public class Nominee {
+public class Nominee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

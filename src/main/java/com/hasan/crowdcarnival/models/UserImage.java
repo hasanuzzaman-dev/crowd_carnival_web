@@ -3,11 +3,12 @@ package com.hasan.crowdcarnival.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "user_image")
-public class UserImage {
+public class UserImage implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
