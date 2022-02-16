@@ -2,6 +2,7 @@ package com.hasan.crowdcarnival.controller;
 
 import com.hasan.crowdcarnival.helper.MyMessage;
 import com.hasan.crowdcarnival.models.Address;
+import com.hasan.crowdcarnival.models.Role;
 import com.hasan.crowdcarnival.models.User;
 import com.hasan.crowdcarnival.models.UserImage;
 import com.hasan.crowdcarnival.repositories.UserRepository;
@@ -135,14 +136,19 @@ public class SignUpController {
                 address.setUser(user);
             }
 
+            Role role = new Role();
+            role.setName("INITIAL");
+
             userImage.setUser(user);
-            user.setRole("ROLE_USER");
+            user.getRoles().add(role);
+
             user.setEnabled(true);
             user.setImageUrl("default.png");
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             user.setUserImage(userImage);
             System.out.println("USER: " + user.toString());
             System.out.println("AGREEMENT: " + agreement);
+            role.getUsers().add(user);
 
             User savedUser = this.userRepository.save(user);
 
@@ -151,7 +157,7 @@ public class SignUpController {
 
             session.setAttribute("message",new MyMessage("Successfully Registered!! ", "alert-success"));
 
-            return "signUp2";
+            return "login";
         }catch (Exception e) {
             e.printStackTrace();
             user.setPassword("");

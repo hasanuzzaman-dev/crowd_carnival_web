@@ -1,12 +1,15 @@
 package com.hasan.crowdcarnival.config;
 
+import com.hasan.crowdcarnival.models.Role;
 import com.hasan.crowdcarnival.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 
 public class CustomUserDetails implements UserDetails {
@@ -19,8 +22,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority simpleGrantedAuthority =new SimpleGrantedAuthority(user.getRole());
-        return List.of(simpleGrantedAuthority);
+        Set<Role> roles = user.getRoles();
+        List<SimpleGrantedAuthority> simpleGrantedAuthorities =new ArrayList<>();
+        for (Role role:roles){
+            simpleGrantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return simpleGrantedAuthorities;
     }
 
     @Override

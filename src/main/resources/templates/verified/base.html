@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      th:fragment="layout(content)">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,7 +16,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
           crossorigin="anonymous"
-          referrerpolicy="no-referrer" />
+          referrerpolicy="no-referrer"/>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
 
@@ -38,15 +40,15 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/user/index}">Home</a>
                 </li>
 
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link "
                        aria-current="page">
                         <span th:text="${user.name}"></span>
                     </a>
-                </li>
+                </li>-->
 
                 <li class="nav-item">
-                    <a class="nav-link"th:classappend="active" aria-current="page" th:href="@{/logout}">Logout</a>
+                    <a class="nav-link" th:classappend="active" aria-current="page" th:href="@{/logout}">Logout</a>
                 </li>
 
             </ul>
@@ -60,11 +62,18 @@
 <div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
 
-    <a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
-    <a href="#" th:href="@{/user/show-contacts/0}" class="item"><i class="fas fa-id-card-alt"></i> View Projects</a>
-    <a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-pencil-alt"></i> Add Project</a>
-    <a href="#" th:href="@{/user/profile}" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
-    <a href="#" class="item"><i class="fas fa-cog"></i> Settings</a>
+    <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+        <a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
+        <a href="#" th:href="@{/user/show-contacts/0}" class="item"><i class="fas fa-id-card-alt"></i> View Projects</a>
+        <a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-pencil-alt"></i> Add Project</a>
+        <a href="#" th:href="@{/user/profile}" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
+        <a href="#" class="item"><i class="fas fa-cog"></i> Settings</a>
+    </div>
+
+    <div sec:authorize="hasAnyAuthority('INITIAL','ADMIN')">
+        <a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Verification</a>
+    </div>
+
     <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
 
     <div class="divider"></div>
@@ -106,7 +115,7 @@
 <!--Sweet Alert-->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    function deleteContact(cid){
+    function deleteContact(cid) {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this project!",
@@ -119,7 +128,7 @@
                     /*swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });*/
-                    window.location = "/user/delete/"+cid;
+                    window.location = "/user/delete/" + cid;
                 } else {
                     swal("Your project is safe!");
                 }

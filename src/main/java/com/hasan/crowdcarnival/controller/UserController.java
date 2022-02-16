@@ -49,18 +49,18 @@ public class UserController {
         model.addAttribute("user", user);
     }
 
-    @RequestMapping("/index")
+/*    @RequestMapping("/index")
     public String dashBoard(Model model, Principal principal) {
         model.addAttribute("title", "User Dashboard");
-        return "normal/user_dashboard";
-    }
+        return "verified/user_dashboard";
+    }*/
 
     // Open add form handler
     @GetMapping("/add-contact")
     public String openAddContactForm(Model model) {
         model.addAttribute("title", "Add Project");
         model.addAttribute("contact", new Contact());
-        return "normal/add_contact_form";
+        return "verified/add_contact_form";
     }
 
     //Processing add contact form
@@ -71,7 +71,7 @@ public class UserController {
         try {
             if (bindingResult.hasErrors()) {
                 model.addAttribute("contact", contact);
-                return "normal/add_contact_form";
+                return "verified/add_contact_form";
             }
 
             String userName = principal.getName();
@@ -89,7 +89,7 @@ public class UserController {
                 System.out.println("File not Uploaded");
                 model.addAttribute("contact", contact);
                 session.setAttribute("message", new MyMessage("Please Select a Photo", "alert-danger"));
-                return "normal/add_contact_form";
+                return "verified/add_contact_form";
 
             } else {
                 contact.setImageUrl(multipartFile.getOriginalFilename());
@@ -115,7 +115,7 @@ public class UserController {
             /*Message Success*/
             session.setAttribute("message", new MyMessage("Contact added Successfully!! ", "alert-success"));
 
-            return "normal/add_contact_form";
+            return "verified/add_contact_form";
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("contact", contact);
@@ -123,7 +123,7 @@ public class UserController {
             session.setAttribute("message", new MyMessage("Something went wrong " + e.getMessage(), "alert-danger"));
         }
 
-        return "normal/add_contact_form";
+        return "verified/add_contact_form";
 
     }
 
@@ -144,7 +144,7 @@ public class UserController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPage", contacts.getTotalPages());
 
-        return "normal/show_contacts";
+        return "verified/show_contacts";
 
     }
 
@@ -170,7 +170,7 @@ public class UserController {
             }
         }
 
-        return "normal/contact_details";
+        return "verified/contact_details";
     }
 
     // delete contact handler
@@ -202,7 +202,7 @@ public class UserController {
         model.addAttribute("title", "Update Contact");
         Contact contact = this.contactRepository.findById(cid).get();
         model.addAttribute("contact", contact);
-        return "normal/update_form";
+        return "verified/update_form";
     }
 
     // update Contact handler
@@ -255,7 +255,7 @@ public class UserController {
 
         model.addAttribute("title", "Profile");
 
-        return "normal/profile";
+        return "verified/profile";
     }
 
 
