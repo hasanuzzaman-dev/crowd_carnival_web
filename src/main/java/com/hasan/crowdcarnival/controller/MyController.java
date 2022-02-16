@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/init")
+@RequestMapping("/home")
 public class MyController {
 
     @RequestMapping("/index")

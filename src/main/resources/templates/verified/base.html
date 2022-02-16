@@ -27,7 +27,7 @@
 <!--Navbar-->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-custom-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/user/index}" href="#">Crowd Carnival</a>
+        <a sec:authorize="hasAnyAuthority('USER', 'ADMIN','INITIAL')" class="navbar-brand" th:href="@{/home/index}" href="#">Crowd Carnival</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,8 +36,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/user/index}">Home</a>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'ADMIN','INITIAL')" >
+                    <a class="nav-link active" aria-current="page" th:href="@{/home/index}">Home</a>
                 </li>
 
                 <!--<li class="nav-item">
@@ -63,15 +63,16 @@
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
 
     <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
-        <a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Home</a>
+        <a href="#" th:href="@{/home/index}" class="item"><i class="fas fa-home"></i> Home</a>
         <a href="#" th:href="@{/user/show-contacts/0}" class="item"><i class="fas fa-id-card-alt"></i> View Projects</a>
         <a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-pencil-alt"></i> Add Project</a>
         <a href="#" th:href="@{/user/profile}" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
         <a href="#" class="item"><i class="fas fa-cog"></i> Settings</a>
     </div>
 
-    <div sec:authorize="hasAnyAuthority('INITIAL','ADMIN')">
-        <a href="#" th:href="@{/user/index}" class="item"><i class="fas fa-home"></i> Verification</a>
+    <div sec:authorize="hasAnyAuthority('INITIAL')">
+        <a href="#" th:href="@{/home/index}" class="item"><i class="fas fa-home"></i> Home</a>
+        <a href="#" th:href="@{/home/verification}" class="item"><i class="fa-solid fa-badge-check"></i> Verification</a>
     </div>
 
     <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
