@@ -25,16 +25,16 @@
                     <tbody>
                     <tr>
                         <th scope="col">#ID: </th>
-                        <th scope="col"><span th:text="'SCM-'+${user.id}"></span></th>
+                        <th scope="col"><span th:text="'CC-'+${user.id}"></span></th>
                     </tr>
                     <tr>
                         <th scope="row">Email</th>
                         <td><span th:text="${user.email}"></span></td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <th scope="row">User Role</th>
                         <td><span th:text="${user.role}"></span></td>
-                    </tr>
+                    </tr>-->
                     <tr>
                         <th scope="row">Account Active</th>
                         <td><span th:text="${user.enabled}"></span></td>
