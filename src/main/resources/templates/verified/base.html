@@ -62,7 +62,7 @@
 <div class="sidebar mt-2">
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
 
-    <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+    <div sec:authorize="hasAnyAuthority('USER','ADMIN')">
         <a href="#" th:href="@{/home/index}" class="item"><i class="fas fa-home"></i> Home</a>
         <a href="#" th:href="@{/user/show-contacts/0}" class="item"><i class="fas fa-id-card-alt"></i> View Projects</a>
         <a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-pencil-alt"></i> Add Project</a>
@@ -70,9 +70,9 @@
         <a href="#" class="item"><i class="fas fa-cog"></i> Settings</a>
     </div>
 
-    <div sec:authorize="hasAnyAuthority('INITIAL')">
+    <div sec:authorize="hasAnyAuthority('INIT')">
         <a href="#" th:href="@{/home/index}" class="item"><i class="fas fa-home"></i> Home</a>
-        <a href="#" th:href="@{/home/verification}" class="item"><i class="fa-solid fa-badge-check"></i> Verification</a>
+        <a href="#" th:href="@{/init/verification}" class="item"><i class="fas fa-user-check"></i> Verification</a>
     </div>
 
     <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
