@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/home")
-public class MyController {
+@RequestMapping( "/init")
+public class InitController {
 
-    @RequestMapping("/index")
-    public String dashBoard(Model model, Principal principal) {
+    @RequestMapping("/verification")
+    public String verification(Model model, Principal principal) {
         model.addAttribute("title", "User Dashboard");
-        return "verified/user_dashboard";
+        return "init/verification";
     }
 }

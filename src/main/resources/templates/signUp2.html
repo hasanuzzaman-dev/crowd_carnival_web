@@ -21,7 +21,8 @@
                         <th:block th:text="${#session.removeAttribute('message')}"/>
                     </div>
 
-                    <form id="regForm" action="" th:action="@{/do_register}" enctype="multipart/form-data" method="post" th:object="${user}">
+                    <form id="regForm" action="" th:action="@{/do_register}" enctype="multipart/form-data" method="post"
+                          th:object="${user}">
 
                         <!-- One "tab" for each step in the form: -->
                         <!--Tab Number 1 Personal Information-->
@@ -29,11 +30,12 @@
                             <h1 class="text-center">Personal Information</h1>
                             <!--Reference Number-->
                             <div class="mb-3">
-                                <label for="reference_field" class="form-label">Reference Number<span style="color: red">*</span></label>
+                                <label for="reference_field" class="form-label">Reference Number<span
+                                        style="color: red">*</span></label>
                                 <input type="text" class="form-control" name="refId"
                                        th:value="${user.refId}"
                                        th:classappend="${#fields.hasErrors('refId') ? 'is-invalid':''}"
-                                       required = "required" id="reference_field" placeholder="Enter your ref Id">
+                                       required="required" id="reference_field" placeholder="Enter your ref Id">
                                 <div class="invalid-feedback" th:each="e:${#fields.errors('refId')}" th:text="${e}">
                                 </div>
                             </div>
@@ -41,21 +43,24 @@
                             <!--Name Field -->
                             <div class="mb-3">
                                 <label for="name_field" class="form-label">Name<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" required = "required" id="name_field"
+                                <input type="text" class="form-control" required="required" id="name_field"
                                        th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}"
                                        name="name"
                                        placeholder="Enter your name" th:value="${user.name}">
-                                <div class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}"></div>
+                                <div class="invalid-feedback" th:each="e:${#fields.errors('name')}"
+                                     th:text="${e}"></div>
                             </div>
                             <!--Email -->
                             <div class="mb-3">
-                                <label for="email_field" class="form-label">Email<span style="color: red">*</span></label>
-                                <input type="email" class="form-control" required = "required"
+                                <label for="email_field" class="form-label">Email<span
+                                        style="color: red">*</span></label>
+                                <input type="email" class="form-control" required="required"
                                        id="email_field" name="email" onfocus="this.value=''"
                                        th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
                                        th:value="${user.email}"
                                        placeholder="Enter your email">
-                                <div class="invalid-feedback" th:each="e:${#fields.errors('email')}" th:text="${e}"></div>
+                                <div class="invalid-feedback" th:each="e:${#fields.errors('email')}"
+                                     th:text="${e}"></div>
                             </div>
                             <!--Date of Birth-->
                             <div class="mb-3">
@@ -64,53 +69,67 @@
                                        th:classappend="${#fields.hasErrors('dateOfBirth')?'is-invalid':''}"
                                        th:value="${user.dateOfBirth}"
                                        name="dateOfBirth">
-                                <div class="invalid-feedback" th:each="e:${#fields.errors('dateOfBirth')}" th:text="${e}"></div>
+                                <div class="invalid-feedback" th:each="e:${#fields.errors('dateOfBirth')}"
+                                     th:text="${e}"></div>
                             </div>
                             <!-- Password field-->
                             <div class="mb-3">
                                 <label for="password_field" class="form-label">Password</label>
                                 <input type="password" name="password"
-                                       class="form-control" id="password_field" required="required" placeholder="Enter your password" onfocus="this.value=''"
-                                       th:value="${user.password}" th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
+                                       class="form-control" id="password_field" required="required"
+                                       placeholder="Enter your password" onfocus="this.value=''"
+                                       th:value="${user.password}"
+                                       th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
                                        aria-describedby="emailHelp">
-                                <div class="invalid-feedback mb-3" th:each="e:${#fields.errors('password')}" th:text="${e}"></div>
+                                <div class="invalid-feedback mb-3" th:each="e:${#fields.errors('password')}"
+                                     th:text="${e}"></div>
                             </div>
                             <!-- Phone One field-->
                             <div class="mb-3">
-                                <label for="phoneOneField" class="form-label">Phone 1<span style="color: red">*</span></label>
-                                <input type="email" class="form-control" required = "required" id="phoneOneField"
+                                <label for="phoneOneField" class="form-label">Phone 1<span
+                                        style="color: red">*</span></label>
+                                <input type="email" class="form-control" required="required" id="phoneOneField"
                                        name="phoneOne"
-                                       th:value="${user.phoneOne}" th:classappend="${#fields.hasErrors('phoneOne')?'is-invalid':''}"
+                                       th:value="${user.phoneOne}"
+                                       th:classappend="${#fields.hasErrors('phoneOne')?'is-invalid':''}"
                                        placeholder="Enter your phone number">
-                                <div class="invalid-feedback mb-3" th:each="e:${#fields.errors('phoneOne')}" th:text="${e}"></div>
+                                <div class="invalid-feedback mb-3" th:each="e:${#fields.errors('phoneOne')}"
+                                     th:text="${e}"></div>
                             </div>
                             <!--Phone 2 and Phone 3-->
                             <div class="row mb-3">
                                 <div class="col">
                                     <label for="phone_two_field" class="form-label">Phone 2</label>
-                                    <input type="text" class="form-control" name="phoneTwo" id="phone_two_field" placeholder="Enter your phone number">
+                                    <input type="text" class="form-control" name="phoneTwo" id="phone_two_field"
+                                           placeholder="Enter your phone number">
                                 </div>
                                 <div class="col">
                                     <label for="phone_three_field" class="form-label">Phone 3</label>
-                                    <input type="text" class="form-control" name="phoneThree" id="phone_three_field" placeholder="Enter your phone number">
+                                    <input type="text" class="form-control" name="phoneThree" id="phone_three_field"
+                                           placeholder="Enter your phone number">
                                 </div>
                             </div>
                             <!--End Phone 2 and Phone 3 -->
                             <!--Photo -->
                             <div class="mb-3">
-                                <label for="photoFile" class="form-label">Choose Your photo<span style="color: red">*</span></label>
-                                <input class="form-control mb-1" type="file" accept="image/*" name="processImage" onchange="loadFile(event)" id="photoFile">
+                                <label for="photoFile" class="form-label">
+                                    Choose Your photo<span style="color: red">*</span>
+                                </label>
+                                <input class="form-control mb-1" type="file" accept="image/*" name="processImage"
+                                       onchange="loadFile(event)" id="photoFile">
                                 <img id="output" style="width: 75px; height: 100px"/>
                             </div>
                             <!-- Nid -->
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label for="nidFrontSide" class="form-label">NID Front<span style="color: red">*</span></label>
+                                    <label for="nidFrontSide" class="form-label">NID Front<span
+                                            style="color: red">*</span></label>
                                     <input class="form-control" type="file" name="processImage" id="nidFrontSide">
                                 </div>
 
                                 <div class="col">
-                                    <label for="nidBackSide" class="form-label">NID Back<span style="color: red">*</span></label>
+                                    <label for="nidBackSide" class="form-label">NID Back<span
+                                            style="color: red">*</span></label>
                                     <input class="form-control" type="file" name="processImage" id="nidBackSide">
                                 </div>
 
@@ -128,31 +147,34 @@
                                 <!--House Number & Name-->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="houseNumber" class="form-label">House Number & House Name<span style="color: red">*</span> </label>
-                                        <input type="text" class="form-control" required = "required" id="houseNumber"
+                                        <label for="houseNumber" class="form-label">House Number & House Name<span
+                                                style="color: red">*</span> </label>
+                                        <input type="text" class="form-control" required="required" id="houseNumber"
                                                name="house"
-                                               th:field ="*{address[0].house}"
+                                               th:field="*{address[0].house}"
                                                placeholder="House Number">
                                     </div>
                                     <div class="col">
-                                        <label class="form-label">Lane Number & Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required"
-                                               th:field ="*{address[0].lane}"
+                                        <label class="form-label">Lane Number & Name<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[0].lane}"
                                                id="laneNumber" placeholder="Lane Number">
                                     </div>
                                 </div>
                                 <!--Lane Number & Road Number & Road Name-->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label class="form-label">Road Number & Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required"
-                                               th:field ="*{address[0].road}"
+                                        <label class="form-label">Road Number & Name<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[0].road}"
                                                id="roadNumber" placeholder="Road Number">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Village<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control"   th:field ="*{address[0].village}"
-                                               required = "required" placeholder="Village">
+                                        <input type="text" class="form-control" th:field="*{address[0].village}"
+                                               required="required" placeholder="Village">
                                     </div>
 
                                 </div>
@@ -160,11 +182,13 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Post Office<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control"   th:field ="*{address[0].postOffice}"required = "required" placeholder="Post Office">
+                                        <input type="text" class="form-control" th:field="*{address[0].postOffice}"
+                                               required="required" placeholder="Post Office">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">Post Code<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control"   th:field ="*{address[0].postCode}"required = "required" placeholder="Post Code">
+                                        <label class="form-label">Post Code<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" th:field="*{address[0].postCode}"
+                                               required="required" placeholder="Post Code">
                                     </div>
                                 </div>
 
@@ -172,32 +196,39 @@
                                 <div class="row mb-3">
 
                                     <div class="col">
-                                        <label  class="form-label">Police Station<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required"   th:field ="*{address[0].policeStation}"placeholder="Police Station">
+                                        <label class="form-label">Police Station<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[0].policeStation}" placeholder="Police Station">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Upozella<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" th:field ="*{address[0].upozella}"required = "required" placeholder="Upozella">
+                                        <input type="text" class="form-control" th:field="*{address[0].upozella}"
+                                               required="required" placeholder="Upozella">
                                     </div>
                                 </div>
 
                                 <!-------------- District ----------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label  class="form-label">District<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control"   th:field ="*{address[0].district}"required = "required" placeholder="District">
+                                        <label class="form-label">District<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" th:field="*{address[0].district}"
+                                               required="required" placeholder="District">
                                     </div>
                                 </div>
 
                                 <!--Nearest Landmark & Google Map-->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label class="form-label">Nearest Landmark<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" th:field ="*{address[0].nearestLandMark}" required = "required" placeholder="Nearest Landmark">
+                                        <label class="form-label">Nearest Landmark<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" th:field="*{address[0].nearestLandMark}"
+                                               required="required" placeholder="Nearest Landmark">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">Google Map</label>
-                                        <input type="text" class="form-control" th:field ="*{address[0].googleMap}" required = "required" placeholder="Google Map">
+                                        <label class="form-label">Google Map</label>
+                                        <input type="text" class="form-control" th:field="*{address[0].googleMap}"
+                                               required="required" placeholder="Google Map">
                                     </div>
                                 </div>
                             </div>
@@ -205,30 +236,40 @@
                             <!------ Permanent Address ---------->
                             <h3 class="mb-3">Permanent Address</h3>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="sameAsPresentAddress" onclick="clickCheckBox()">
-                                <label class="form-check-label" style="color: blue" for="sameAsPresentAddress">Same as present address</label>
+                                <input class="form-check-input" type="checkbox" value="" id="sameAsPresentAddress"
+                                       onclick="clickCheckBox()">
+                                <label class="form-check-label" style="color: blue" for="sameAsPresentAddress">Same as
+                                    present address</label>
                             </div>
                             <div class="permanent-address" id="permanentAddressDiv">
                                 <!--Permanent House & Lane-->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="houseNumber" class="form-label">House Number & House Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" th:field="*{address[1].house}" required = "required" placeholder="House Number">
+                                        <label for="houseNumber" class="form-label">House Number & House Name<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" th:field="*{address[1].house}"
+                                               required="required" placeholder="House Number">
                                     </div>
                                     <div class="col">
-                                        <label class="form-label">Lane Number & Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control"  th:field="*{address[1].lane}" required = "required" placeholder="Lane Number">
+                                        <label class="form-label">
+                                            Lane Number & Name<span style="color: red">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" th:field="*{address[1].lane}"
+                                               required="required" placeholder="Lane Number">
                                     </div>
                                 </div>
                                 <!-------Permanent Road  & Village ------------>
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label class="form-label">Road Number & Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control"  th:field="*{address[1].road}" required = "required" placeholder="Road Number">
+                                        <label class="form-label">Road Number & Name<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" th:field="*{address[1].road}"
+                                               required="required" placeholder="Road Number">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Village<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required"  th:field="*{address[1].village}" placeholder="Village">
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].village}" placeholder="Village">
                                     </div>
 
                                 </div>
@@ -236,23 +277,28 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Post Office<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required"  th:field="*{address[1].postOffice}"  placeholder="Post Office">
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].postOffice}" placeholder="Post Office">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">Post Code<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" th:field="*{address[1].postCode}"placeholder="Post Code">
+                                        <label class="form-label">Post Code<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].postCode}" placeholder="Post Code">
                                     </div>
                                 </div>
 
                                 <!--------------Permanent Police Station & Village ----------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label  class="form-label">Police Station<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" th:field="*{address[1].policeStation}"  placeholder="Police Station">
+                                        <label class="form-label">Police Station<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].policeStation}" placeholder="Police Station">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Upozella<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required"  th:field="*{address[1].upozella}" placeholder="Upozella">
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].upozella}" placeholder="Upozella">
                                     </div>
                                 </div>
 
@@ -260,20 +306,24 @@
                                 <!-----------------Permanent District----------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label  class="form-label">District<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" th:field="*{address[1].district}" placeholder="District">
+                                        <label class="form-label">District<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].district}" placeholder="District">
                                     </div>
                                 </div>
 
                                 <!-----------------Permanent Nearest Landmark & Google Map---------------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label class="form-label">Nearest Landmark<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required"th:field="*{address[1].nearestLandMark}" placeholder="Nearest Landmark">
+                                        <label class="form-label">Nearest Landmark<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].nearestLandMark}" placeholder="Nearest Landmark">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">Google Map</label>
-                                        <input type="text" class="form-control" required = "required" th:field="*{address[1].googleMap}"placeholder="Google Map">
+                                        <label class="form-label">Google Map</label>
+                                        <input type="text" class="form-control" required="required"
+                                               th:field="*{address[1].googleMap}" placeholder="Google Map">
                                     </div>
                                 </div>
                             </div>
@@ -294,11 +344,14 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nominee Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" th:field="*{nominees[0].nomineeName}" required = "required" placeholder="Nominee name">
+                                        <input type="text" class="form-control" th:field="*{nominees[0].nomineeName}"
+                                               required="required" placeholder="Nominee name">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Nominee Relationship<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control"th:field="*{nominees[0].nomineeRelationShip}" required = "required" placeholder="Nominee Relationship">
+                                        <input type="text" class="form-control"
+                                               th:field="*{nominees[0].nomineeRelationShip}" required="required"
+                                               placeholder="Nominee Relationship">
                                     </div>
                                 </div>
 
@@ -306,35 +359,46 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nominee Phone<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Nominee Phone">
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Nominee Phone">
                                     </div>
                                     <div class="col">
-                                        <label class="form-label">Nominee Percentage<span style="color: red">*</span></label>
-                                        <input type="number" class="form-control" required = "required" placeholder="Nominee Percentage">
+                                        <label class="form-label">Nominee Percentage<span
+                                                style="color: red">*</span></label>
+                                        <input type="number" class="form-control" required="required"
+                                               placeholder="Nominee Percentage">
                                     </div>
                                 </div>
 
                                 <!-----------Nominee House Number & Name------------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="houseNumber" class="form-label">House Name,Number<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="House Number">
+                                        <label for="houseNumber" class="form-label">House Name,Number<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="House Number">
                                     </div>
 
                                     <div class="col">
-                                        <label class="form-label">Lane Name,Number<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Lane Number">
+                                        <label class="form-label">Lane Name,Number<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Lane Number">
                                     </div>
                                 </div>
                                 <!--------------Nominee Lane Number & Name-------------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label class="form-label">Road Name,Number<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Road Number">
+                                        <label class="form-label">
+                                            Road Name,Number<span style="color: red">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Road Number">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Village<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Village">
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Village">
                                     </div>
 
                                 </div>
@@ -343,11 +407,13 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Post Office<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Post Office">
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Post Office">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">Post Code<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Post Code">
+                                        <label class="form-label">Post Code<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Post Code">
                                     </div>
 
                                 </div>
@@ -355,16 +421,20 @@
                                 <!-----------------Nominee Upozella and District------------------->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label  class="form-label">Police Station<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Police Station">
+                                        <label class="form-label">Police Station<span
+                                                style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Police Station">
                                     </div>
                                     <div class="col">
                                         <label class="form-label">Upozella<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Upozella">
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Upozella">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">District<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" required = "required" placeholder="District">
+                                        <label class="form-label">District<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="District">
                                     </div>
                                 </div>
 
@@ -372,23 +442,26 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label class="form-label">Nearest Landmark</label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Nearest Landmark">
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Nearest Landmark">
                                     </div>
                                     <div class="col">
-                                        <label  class="form-label">Google Map</label>
-                                        <input type="text" class="form-control" required = "required" placeholder="Google Map">
+                                        <label class="form-label">Google Map</label>
+                                        <input type="text" class="form-control" required="required"
+                                               placeholder="Google Map">
                                     </div>
                                 </div>
                             </div>
 
                             <!-----------------Terms & Condition----------------->
                             <div class="mb-3 form-check">
-                                <input type="checkbox" name="agreement" class="form-check-input" required="required" id="agreement">
-                                <label class="form-check-label" for="agreement" style="color: blue">Terms & Condition</label>
+                                <input type="checkbox" name="agreement" class="form-check-input" required="required"
+                                       id="agreement">
+                                <label class="form-check-label" for="agreement" style="color: blue">Terms &
+                                    Condition</label>
                             </div>
                         </div>
                         <!--------------End Tab(Nominee Details) 3 ------------->
-
 
 
                         <!--<div class="tab">Login Info:
@@ -398,8 +471,13 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <button type="button" id="prevBtn" class="btn btn-info text-white action-button-previous" onclick="nextPrev(-1)">Previous</button>
-                                <button type="button" class="btn bg-custom-primary text-white action-button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                <button type="button" id="prevBtn"
+                                        class="btn btn-info text-white action-button-previous" onclick="nextPrev(-1)">
+                                    Previous
+                                </button>
+                                <button type="button" class="btn bg-custom-primary text-white action-button"
+                                        id="nextBtn" onclick="nextPrev(1)">Next
+                                </button>
                             </div>
                         </div>
 

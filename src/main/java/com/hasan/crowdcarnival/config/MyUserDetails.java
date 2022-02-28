@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Set;
 
 
-public class CustomUserDetails implements UserDetails {
+public class MyUserDetails implements UserDetails {
 
     private User user;
 
-    public CustomUserDetails(User user) {
+    public MyUserDetails(User user) {
         this.user = user;
     }
 
