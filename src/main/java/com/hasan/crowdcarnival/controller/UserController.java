@@ -55,13 +55,7 @@ public class UserController {
         return "verified/user_dashboard";
     }*/
 
-    // Open add form handler
-    @GetMapping("/add-contact")
-    public String openAddContactForm(Model model) {
-        model.addAttribute("title", "Add Project");
-        model.addAttribute("contact", new Contact());
-        return "verified/add_contact_form";
-    }
+
 
     //Processing add contact form
     @PostMapping("/process-contact")
@@ -127,12 +121,12 @@ public class UserController {
 
     }
 
-    // Show Contact handler
+    // Show Project handler
     // For pagination you need per page contact [n=5] and current page = [page = 0]
-    @GetMapping("/show-contacts/{page}")
-    public String showContacts(@PathVariable("page") Integer page, Model model, Principal principal) {
+    @GetMapping("/view-projects/{page}")
+    public String showProjects(@PathVariable("page") Integer page, Model model, Principal principal) {
 
-        model.addAttribute("title", "Show user contacts");
+        model.addAttribute("title", "Projects");
 
         // Get signed user
         String userName = principal.getName();
