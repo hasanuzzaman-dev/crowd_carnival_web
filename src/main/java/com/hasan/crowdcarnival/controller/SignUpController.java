@@ -136,8 +136,7 @@ public class SignUpController {
                 address.setUser(user);
             }
 
-            Role role = new Role();
-            role.setName("INITIAL");
+            Role role = new Role("INIT");
 
             userImage.setUser(user);
             user.getRoles().add(role);

@@ -69,12 +69,9 @@
     <a sec:authorize="hasAnyAuthority('ADMIN')" href="#" th:href="@{/admin/add-project}" class="item"><i class="fas fa-pencil-alt"></i> Add Project</a>
     <a sec:authorize="hasAnyAuthority('USER','ADMIN')" href="#" th:href="@{/user/profile}" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
     <a sec:authorize="hasAnyAuthority('USER','ADMIN')" href="#" class="item"><i class="fas fa-cog"></i> Settings</a>
+    <a sec:authorize="hasAnyAuthority('INIT')" href="#" th:href="@{/init/verification}" class="item"><i class="fas fa-user-check"></i> Verification</a>
 
 
-    <div sec:authorize="hasAnyAuthority('INIT')">
-        <a href="#" th:href="@{/home/index}" class="item"><i class="fas fa-home"></i> Home</a>
-        <a href="#" th:href="@{/init/verification}" class="item"><i class="fas fa-user-check"></i> Verification</a>
-    </div>
 
     <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
 

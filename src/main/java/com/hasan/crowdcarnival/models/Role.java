@@ -15,7 +15,14 @@ public class Role implements Serializable {
     private long id;
     private String name;
 
-    @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+    public Role() {
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
+
+    @ManyToMany(mappedBy = "roles", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<User> users = new HashSet<>();
 
 
