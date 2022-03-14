@@ -13,4 +13,8 @@ public class RoleService {
     public Role saveRole(Role role){
         return roleRepository.save(role);
     }
+
+    public Role findById(long id){
+        return roleRepository.findById(id);
+    }
 }

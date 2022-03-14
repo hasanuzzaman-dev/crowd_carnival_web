@@ -5,7 +5,9 @@ import com.hasan.crowdcarnival.models.Address;
 import com.hasan.crowdcarnival.models.Role;
 import com.hasan.crowdcarnival.models.User;
 import com.hasan.crowdcarnival.models.UserImage;
+import com.hasan.crowdcarnival.repositories.RoleRepository;
 import com.hasan.crowdcarnival.repositories.UserRepository;
+import com.hasan.crowdcarnival.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,6 +40,9 @@ public class SignUpController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleService roleService;
 
 /*    // Handler for registering user
     @RequestMapping(value = "/do_register", method = RequestMethod.POST)
@@ -136,7 +141,9 @@ public class SignUpController {
                 address.setUser(user);
             }
 
-            Role role = new Role("INIT");
+           // Role role = new Role("INIT");
+
+            Role role = roleService.findById(3);
 
             userImage.setUser(user);
             user.getRoles().add(role);
@@ -147,7 +154,7 @@ public class SignUpController {
             user.setUserImage(userImage);
             System.out.println("USER: " + user.toString());
             System.out.println("AGREEMENT: " + agreement);
-            role.getUsers().add(user);
+           // role.getUsers().add(user);
 
             User savedUser = this.userRepository.save(user);
 
@@ -156,7 +163,7 @@ public class SignUpController {
 
             session.setAttribute("message",new MyMessage("Successfully Registered!! ", "alert-success"));
 
-            return "login";
+            return "redirect:/signIn";
         }catch (Exception e) {
             e.printStackTrace();
             user.setPassword("");
