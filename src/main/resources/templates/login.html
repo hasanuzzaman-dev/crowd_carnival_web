@@ -14,9 +14,15 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
+                        <h3 class="sign-in-text text-center">SIGN IN</h3>
+                        <div class="alert text-center"
+                             th:if="${session.message}"
+                             th:classappend="${session.message.type}"
+                             role="alert">
+                            <p th:text="${session.message.content}"></p>
+                            <th:block th:text="${#session.removeAttribute('message')}"/>
+                        </div>
                         <form id="login-form" class="form" th:action="@{/doLogin}" action="#" method="post">
-                            <h3 class="text-center">Login</h3>
-
                             <div th:if="${param.error}" class="alert alert-danger">
                                 Invalid username & password!!
                             </div>
@@ -32,7 +38,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="remember-me" class="mb-3"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="submit" class="btn btn-md bg-custom-primary text-white" value="SIGN IN">
                             </div>
                             <div id="register-link" class="text-end">
                                 <a th:href="@{/signUp}" class="text-info">Register here</a>

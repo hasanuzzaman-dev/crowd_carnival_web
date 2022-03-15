@@ -1,6 +1,7 @@
 package com.hasan.crowdcarnival.models;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -50,10 +51,10 @@ public class User implements Serializable {
     private UserImage userImage;
 
     @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Address> address;
+    private List<@Valid Address> address;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Nominee> nominees = new ArrayList<>();
+    private List<@Valid Nominee> nominees = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
