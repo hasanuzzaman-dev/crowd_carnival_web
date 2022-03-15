@@ -44,7 +44,7 @@ public class HomeController {
     private String signUp(Model model){
         model.addAttribute("title", "SignUp - Crowd Carnival");
         model.addAttribute("user", new User());
-        return "signUp2";
+        return "signUp";
     }
 
     // handler for custom login

@@ -28,7 +28,7 @@ body {
     height: 420px;
     border: 1px solid #9C9C9C;
     background-color: white;
-    border-radius: 20px;
+
 }
 
 #login .container #login-row #login-column #login-box #login-form {
@@ -124,5 +124,23 @@ body {
     padding: 10px;
     /*border: 1px solid gray;*/
     display: none;
+}
+
+.sign-in-text{
+    background: #024649;
+    color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.sign-up-text{
+    background: #024649;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.check-box{
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 

@@ -106,13 +106,13 @@ public class SignUpController {
             }
             if (bindingResult.hasErrors()){
                 model.addAttribute("user", user);
-                return "signUp2";
+                return "signUp";
             }
 
             if (multipartFiles.length < 1){
                 model.addAttribute("contact", user);
                 session.setAttribute("message", new MyMessage("Please Select a Photo", "alert-danger"));
-                return "signUp2";
+                return "signUp";
             }
             UserImage userImage = new UserImage();
             int i = 1;
@@ -161,7 +161,7 @@ public class SignUpController {
             // Show empty user in frontend
             model.addAttribute("user", new User());
 
-            session.setAttribute("message",new MyMessage("Successfully Registered!! ", "alert-success"));
+            session.setAttribute("message",new MyMessage("Successfully Registration. Please LogIn !! ", "alert-success"));
 
             return "redirect:/signIn";
         }catch (Exception e) {
@@ -169,7 +169,7 @@ public class SignUpController {
             user.setPassword("");
             model.addAttribute("user", user);
             session.setAttribute("message", new MyMessage("Something went wrong !! \n" + e.getLocalizedMessage(), "alert-danger"));
-            return "signUp2";
+            return "signUp";
         }
 
 
