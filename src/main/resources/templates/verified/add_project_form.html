@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="verified/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Contact</title>
+</head>
+<body>
+<section>
+
+    <div class="card me-3 ms-3">
+        <div class="card-body">
+            <h1 class="text-center">Add Project</h1>
+            <div class="container-fluid mt-1">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form action="#" th:object="${project}" enctype="multipart/form-data" method="post"
+                              th:action="@{/admin/save-project}" class="mt-2">
+
+                            <!---  -------------- projectName ------------------------>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-plus"></i></span>
+                                <input type="text" class="form-control" placeholder="Enter project name here"
+                                       name="projectName"
+                                       required="required"
+                                       th:classappend="${#fields.hasErrors('projectName') ? 'is-invalid':''}"
+                                       th:value="${project.projectName}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('projectName')}" th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!------------------- projectSummery --------------------------->
+                            <div class="input-group mb-3">
+                                <textarea id="mytextarea" class="form-control"
+                                          placeholder="Brief summary of the project in 1200 words" name="projectSummery"
+                                          rows="10"
+                                          th:text="${project.projectSummery}"></textarea>
+                            </div>
+
+                            <!-------------- totalCostOfProject ----------------------------->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
+                                <input type="text" class="form-control" placeholder="Total cost of the project in BDT"
+                                       name="totalCostOfProject" th:value="${project.totalCostOfProject}"
+                                       aria-describedby="basic-addon1">
+                            </div>
+
+                            <!-------------------- numberOfInvestor ---------------------->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                <input type="text" class="form-control"
+                                       placeholder="Number of investors invited for the project/ total individuals"
+                                       name="numberOfInvestor" id="numberOfInvestor"
+                                       th:value="${project.numberOfInvestor}"
+                                       aria-describedby="basic-addon1">
+                            </div>
+
+                            <!-------------------- amountPerInvestor --------------->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                <input type="number" class="form-control"
+                                       placeholder="Amount of investment for each investor in BDT"
+                                       name="amountPerInvestor" id="amountPerInvestor" required="required"
+                                       th:classappend="${#fields.hasErrors('amountPerInvestor') ? 'is-invalid':''}"
+                                       th:value="${project.amountPerInvestor}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('amountPerInvestor')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+
+                            <!----------------------- paidAmountOfInvestment ------------------------>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="paidAmountOfInvestment" class="form-control"
+                                       placeholder="The paid amount of investment which is equal to certain percentage of the total project investment"
+                                       name="paidAmountOfInvestment" required="required"
+                                       th:classappend="${#fields.hasErrors('paidAmountOfInvestment') ? 'is-invalid': ''}"
+                                       th:value="${project.paidAmountOfInvestment}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('paidAmountOfInvestment')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+
+                            <!--------------------------- projectFile ------------------------->
+                            <div class="input-group mt-3 mb-3">
+                                <input type="file" class="form-control" id="inputGroupFile04" name="projectFile"
+                                       required="required" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                            </div>
+                            <!--Save Button-->
+                            <div class="container text-center">
+                                <button class="btn btn-outline-primary">Save Project</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+</body>
+</html>

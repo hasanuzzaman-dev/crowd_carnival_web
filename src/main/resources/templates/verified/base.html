@@ -64,7 +64,7 @@
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
 
 
-    <a sec:authorize="hasAnyAuthority('USER','ADMIN')" href="#" th:href="@{/home/index}" class="item"><i class="fas fa-home"></i> Home</a>
+    <a sec:authorize="hasAnyAuthority('USER','ADMIN','INIT')" href="#" th:href="@{/home/index}" class="item"><i class="fas fa-home"></i> Home</a>
     <a sec:authorize="hasAnyAuthority('USER','ADMIN')" href="#" th:href="@{/user/view-projects/0}" class="item"><i class="fas fa-id-card-alt"></i> View Projects</a>
     <a sec:authorize="hasAnyAuthority('ADMIN')" href="#" th:href="@{/admin/add-project}" class="item"><i class="fas fa-pencil-alt"></i> Add Project</a>
     <a sec:authorize="hasAnyAuthority('USER','ADMIN')" href="#" th:href="@{/user/profile}" class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
