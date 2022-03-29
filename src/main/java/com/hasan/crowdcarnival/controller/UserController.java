@@ -59,8 +59,9 @@ public class UserController {
 
     //Processing add contact form
     @PostMapping("/process-contact")
-    public String processContact(@Valid @ModelAttribute Contact contact, @RequestParam("processImage") MultipartFile multipartFile, BindingResult bindingResult,
-                                 Model model, Principal principal, HttpSession session) {
+    public String processContact(@Valid @ModelAttribute Contact contact, @RequestParam("processImage") MultipartFile multipartFile,
+                                 BindingResult bindingResult, Model model,
+                                 Principal principal, HttpSession session) {
 
         try {
             if (bindingResult.hasErrors()) {
