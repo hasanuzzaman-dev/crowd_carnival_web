@@ -42,12 +42,12 @@ public class AdminController {
     // save project handler
     @PostMapping("/save-project")
     public String saveProject(@Valid @ModelAttribute Project project, BindingResult bindingResult,
-                              @RequestParam("projectFile") MultipartFile multipartFile,
+                              @RequestParam("processFile") MultipartFile multipartFile,
                               Model model, Principal principal, HttpSession session){
 
         try {
             if (bindingResult.hasErrors()){
-                System.out.println("Errors"+bindingResult.hasErrors());
+                System.out.println("Errors "+bindingResult.getAllErrors().toString());
                 model.addAttribute("project", project);
                 return "verified/add_project_form";
             }
