@@ -157,39 +157,17 @@ public class UserController {
 
     // Showing particular project details
     @RequestMapping("/{projectId}/project")
-    public String showProjectDetails(@PathVariable("projectId") Long projectId, Model model, Principal principal) {
+    public String showProjectDetails(@PathVariable("projectId") long projectId, Model model) {
         // System.out.println("Cid:"+cid);
         model.addAttribute("title", "Project");
 
         Optional<Project> projectOptional = projectService.findById(projectId);
 
-
-
         if (projectOptional.isPresent()) {
             Project project = projectOptional.get();
 
-            String username = principal.getName();
-            User user = this.userRepository.getUserByUserName(username);
-            Set<Role> roles =  user.getRoles();
-            for (Role role: roles){
-                if (role.getId() == 1){
-                    model.addAttribute("role",role);
-                }
-            }
-            /*
-            // get current user
-            String username = principal.getName();
-            User user = this.userRepository.getUserByUserName(username);
-
-            // show contact only current user
-            if (user.getId() == contact.getUser().getId()) {
-                model.addAttribute("contact", contact);
-            }*/
-
             // show contact only user & Admin
             model.addAttribute("project", project);
-
-
         }
 
         return "verified/project_details";
@@ -202,7 +180,6 @@ public class UserController {
         model.addAttribute("title", "Contact");
 
         Optional<Contact> contactOptional = this.contactRepository.findById(cid);
-
 
         if (contactOptional.isPresent()) {
             Contact contact = contactOptional.get();

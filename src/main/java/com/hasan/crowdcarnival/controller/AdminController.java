@@ -116,22 +116,8 @@ public class AdminController {
         Optional<Project> projectOptional = projectService.findById(projectId);
         if (projectOptional.isPresent()) {
             Project project = projectOptional.get();
-
             project.setActive(false);
-
             projectService.save(project);
-
-            /*// get current user
-            String username = principal.getName();
-            User user = this.userRepository.getUserByUserName(username);
-
-            // delete contact only current user
-            if (user.getId() == contact.getUser().getId()) {
-                this.contactRepository.delete(contact);
-
-                session.setAttribute("message", new MyMessage("Contact deleted Successfully", "alert-success"));
-            }*/
-
         }
         return "redirect:/user/view-projects/0";
     }
