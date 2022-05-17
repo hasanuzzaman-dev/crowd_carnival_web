@@ -19,7 +19,7 @@
                         <form action="#" th:object="${project}" enctype="multipart/form-data" method="post"
                               th:action="@{/admin/save-project}" class="mt-2">
 
-                            <!---  -------------- projectName ------------------------>
+                            <!---  -------------- A. Name of the project  ------------------------>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa fa-plus"></i></span>
                                 <input type="text" class="form-control" placeholder="Enter project name here"
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
 
-                            <!------------------- projectSummery --------------------------->
+                            <!--B. Brief summary of the project in 1200 words. (copy and paste). --->
                             <div class="input-group mb-3">
                                 <textarea id="mytextarea" class="form-control"
                                           placeholder="Brief summary of the project in 1200 words" name="projectSummery"
@@ -41,7 +41,7 @@
                                           th:text="${project.projectSummery}"></textarea>
                             </div>
 
-                            <!-------------- totalCostOfProject ----------------------------->
+                            <!---D. Total cost of the project in BDT --->
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-user-alt"></i></span>
                                 <input type="text" class="form-control" placeholder="Total cost of the project in BDT"
@@ -49,7 +49,7 @@
                                        aria-describedby="basic-addon1">
                             </div>
 
-                            <!-------------------- numberOfInvestor ---------------------->
+                            <!--E. Number of investors invited for the project/ total individuals. --->
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
                                 <input type="text" class="form-control"
@@ -59,7 +59,7 @@
                                        aria-describedby="basic-addon1">
                             </div>
 
-                            <!-------------------- amountPerInvestor --------------->
+                            <!-- Amount of investment for each investor in BDT. -->
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                 <input type="number" class="form-control"
@@ -75,7 +75,7 @@
                             </div>
 
 
-                            <!----------------------- paidAmountOfInvestment ------------------------>
+                            <!--- G. The paid amount of investment which is equal to certain percentage of the total project investment. -->
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                 <input type="text" id="paidAmountOfInvestment" class="form-control"
@@ -90,10 +90,130 @@
                                 </div>
                             </div>
 
+                            <!--- H. Pre-sold number of investment in BDT.  -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="preSoldNumberOfInvestmentBDT" class="form-control"
+                                       placeholder="Pre-sold number of investment in BDT"
+                                       name="preSoldNumberOfInvestmentBDT" required="required"
+                                       th:classappend="${#fields.hasErrors('preSoldNumberOfInvestmentBDT') ? 'is-invalid': ''}"
+                                       th:value="${project.preSoldNumberOfInvestmentBDT}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('preSoldNumberOfInvestmentBDT')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!--- I. Pre-sold number of investment in %.   -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="preSoldNumberOfInvestmentPercentage" class="form-control"
+                                       placeholder="Pre-sold number of investment in %."
+                                       name="preSoldNumberOfInvestmentPercentage" required="required"
+                                       th:classappend="${#fields.hasErrors('preSoldNumberOfInvestmentPercentage') ? 'is-invalid': ''}"
+                                       th:value="${project.preSoldNumberOfInvestmentPercentage}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('preSoldNumberOfInvestmentPercentage')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!--- J. Booking auto termination time in hours.   -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="bookingTerminationTime" class="form-control"
+                                       placeholder="Booking auto termination time in hours."
+                                       name="bookingTerminationTime" required="required"
+                                       th:classappend="${#fields.hasErrors('bookingTerminationTime') ? 'is-invalid': ''}"
+                                       th:value="${project.bookingTerminationTime}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('bookingTerminationTime')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!--- K. The units of investment one can do for the project.    -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="unitOfInvestment" class="form-control"
+                                       placeholder="The units of investment one can do for the project"
+                                       name="unitOfInvestment" required="required"
+                                       th:classappend="${#fields.hasErrors('unitOfInvestment') ? 'is-invalid': ''}"
+                                       th:value="${project.unitOfInvestment}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('unitOfInvestment')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!--- L. The medium of communication the investor prefers to use -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="mediumOfCommunication" class="form-control"
+                                       placeholder="The medium of communication the investor prefers to use"
+                                       name="mediumOfCommunication" required="required"
+                                       th:classappend="${#fields.hasErrors('mediumOfCommunication') ? 'is-invalid': ''}"
+                                       th:value="${project.mediumOfCommunication}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('mediumOfCommunication')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!---M. How frequently does the investor want to know about the updates of the project?  -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="frequentlyUpdateOfProject" class="form-control"
+                                       placeholder="How frequently does the investor want to know about the updates of the project? "
+                                       name="frequentlyUpdateOfProject" required="required"
+                                       th:classappend="${#fields.hasErrors('frequentlyUpdateOfProject') ? 'is-invalid': ''}"
+                                       th:value="${project.frequentlyUpdateOfProject}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('frequentlyUpdateOfProject')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!--- N. Is the investor interested to join any activities of the project? How many every year?  -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="investorInterestedJoinActivities" class="form-control"
+                                       placeholder="Is the investor interested to join any activities of the project? How many every year?"
+                                       name="investorInterestedJoinActivities" required="required"
+                                       th:classappend="${#fields.hasErrors('investorInterestedJoinActivities') ? 'is-invalid': ''}"
+                                       th:value="${project.investorInterestedJoinActivities}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('investorInterestedJoinActivities')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
+                            <!--- O. How frequently does the investor want to withdraw the profit? Once a year/ once in every 2 years. -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="text" id="frequentlyWithdrawProfit" class="form-control"
+                                       placeholder="The medium of communication the investor prefers to use"
+                                       name="frequentlyWithdrawProfit" required="required"
+                                       th:classappend="${#fields.hasErrors('frequentlyWithdrawProfit') ? 'is-invalid': ''}"
+                                       th:value="${project.frequentlyWithdrawProfit}"
+                                       aria-describedby="basic-addon1">
+                                <div class="invalid-feedback"
+                                     th:each="e:${#fields.errors('frequentlyWithdrawProfit')}"
+                                     th:text="${e}">
+                                </div>
+                            </div>
+
 
                             <!--------------------------- projectFile ------------------------->
                             <div class="input-group mt-3 mb-3">
-                                <input type="file" class="form-control" id="inputGroupFile04" name="projectFile"
+                                <input type="file" class="form-control" id="inputGroupFile04" name="processFile"
                                        required="required" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                             </div>
                             <!--Save Button-->

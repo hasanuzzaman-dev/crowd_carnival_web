@@ -42,12 +42,12 @@ public class AdminController {
     // save project handler
     @PostMapping("/save-project")
     public String saveProject(@Valid @ModelAttribute Project project, BindingResult bindingResult,
-                              @RequestParam("projectFile") MultipartFile multipartFile,
+                              @RequestParam("processFile") MultipartFile multipartFile,
                               Model model, Principal principal, HttpSession session){
 
         try {
             if (bindingResult.hasErrors()){
-                System.out.println("Errors"+bindingResult.hasErrors());
+                System.out.println("Errors "+bindingResult.getAllErrors().toString());
                 model.addAttribute("project", project);
                 return "verified/add_project_form";
             }
@@ -74,6 +74,7 @@ public class AdminController {
                 // image save to static folder
                 File saveFile = new ClassPathResource("static/img").getFile();
 
+
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
                 Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("File is Uploaded");
@@ -81,6 +82,7 @@ public class AdminController {
 
             project.setProjectCreateDate(new Timestamp(System.currentTimeMillis()));
             project.setUsers(Collections.singleton(user));
+            project.setProjectCreateDate(new Timestamp(System.currentTimeMillis()));
 
             user.getProjects().add(project);
             this.userService.save(user);
@@ -91,10 +93,6 @@ public class AdminController {
             session.setAttribute("message", new MyMessage("Project added Successfully!! ", "alert-success"));
 
             return "verified/add_project_form";
-
-
-
-
         }catch (Exception e){
             e.printStackTrace();
             model.addAttribute("project", project);
