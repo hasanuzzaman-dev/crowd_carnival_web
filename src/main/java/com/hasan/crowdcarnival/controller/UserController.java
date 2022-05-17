@@ -2,9 +2,13 @@ package com.hasan.crowdcarnival.controller;
 
 import com.hasan.crowdcarnival.helper.MyMessage;
 import com.hasan.crowdcarnival.models.Contact;
+import com.hasan.crowdcarnival.models.Project;
+import com.hasan.crowdcarnival.models.Role;
 import com.hasan.crowdcarnival.models.User;
 import com.hasan.crowdcarnival.repositories.ContactRepository;
+import com.hasan.crowdcarnival.repositories.ProjectRepository;
 import com.hasan.crowdcarnival.repositories.UserRepository;
+import com.hasan.crowdcarnival.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -26,8 +30,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/user")
@@ -38,6 +44,9 @@ public class UserController {
 
     @Autowired
     private ContactRepository contactRepository;
+
+    @Autowired
+    private ProjectService projectService;
 
 
     // This method run for every method index, add_contact or etc.
@@ -134,14 +143,56 @@ public class UserController {
         String userName = principal.getName();
         User user = this.userRepository.getUserByUserName(userName);
         Pageable pageable = PageRequest.of(page, 2);
-        Page<Contact> contacts = this.contactRepository.findContactsByUser(user.getId(), pageable);
+       // Page<Contact> contacts = this.contactRepository.findContactsByUser(user.getId(), pageable);
+        Page<Project> projects = projectService.findAllByActive(true,pageable);
 
-        model.addAttribute("contacts", contacts);
+
+        model.addAttribute("projects", projects);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPage", contacts.getTotalPages());
+        model.addAttribute("totalPage", projects.getTotalPages());
 
-        return "verified/show_contacts";
+        return "verified/show_projects";
 
+    }
+
+    // Showing particular project details
+    @RequestMapping("/{projectId}/project")
+    public String showProjectDetails(@PathVariable("projectId") Long projectId, Model model, Principal principal) {
+        // System.out.println("Cid:"+cid);
+        model.addAttribute("title", "Project");
+
+        Optional<Project> projectOptional = projectService.findById(projectId);
+
+
+
+        if (projectOptional.isPresent()) {
+            Project project = projectOptional.get();
+
+            String username = principal.getName();
+            User user = this.userRepository.getUserByUserName(username);
+            Set<Role> roles =  user.getRoles();
+            for (Role role: roles){
+                if (role.getId() == 1){
+                    model.addAttribute("role",role);
+                }
+            }
+            /*
+            // get current user
+            String username = principal.getName();
+            User user = this.userRepository.getUserByUserName(username);
+
+            // show contact only current user
+            if (user.getId() == contact.getUser().getId()) {
+                model.addAttribute("contact", contact);
+            }*/
+
+            // show contact only user & Admin
+            model.addAttribute("project", project);
+
+
+        }
+
+        return "verified/project_details";
     }
 
     // Showing particular contact details

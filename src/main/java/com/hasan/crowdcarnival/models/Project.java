@@ -30,6 +30,10 @@ public class Project {
     @Column(name = "created_user_id")
     private String createdUserId;
 
+    @Column(name = "is_active")
+    private boolean isActive;
+
+
     //B. Brief summary of the project in 1200 words. (copy and paste).
     private String projectSummery;
 

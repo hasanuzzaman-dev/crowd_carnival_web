@@ -4,6 +4,7 @@ import com.hasan.crowdcarnival.helper.MyMessage;
 import com.hasan.crowdcarnival.models.Contact;
 import com.hasan.crowdcarnival.models.Project;
 import com.hasan.crowdcarnival.models.User;
+import com.hasan.crowdcarnival.services.ProjectService;
 import com.hasan.crowdcarnival.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -23,6 +24,7 @@ import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.Collections;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,6 +32,9 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ProjectService projectService;
 
     // Open add Project form handler
     @GetMapping("/add-project")
@@ -81,8 +86,10 @@ public class AdminController {
             }
 
             project.setProjectCreateDate(new Timestamp(System.currentTimeMillis()));
+            project.setActive(true);
+            project.setCreatedUserId(String.valueOf(user.getId()));
             project.setUsers(Collections.singleton(user));
-            project.setProjectCreateDate(new Timestamp(System.currentTimeMillis()));
+
 
             user.getProjects().add(project);
             this.userService.save(user);
@@ -101,6 +108,32 @@ public class AdminController {
         }
 
         return "verified/add_project_form";
+    }
+
+    // Project delete by Admin
+    @GetMapping("/delete/{projectId}")
+    public String deleteProject(@PathVariable("projectId") long projectId, Model model, Principal principal, HttpSession session) {
+        Optional<Project> projectOptional = projectService.findById(projectId);
+        if (projectOptional.isPresent()) {
+            Project project = projectOptional.get();
+
+            project.setActive(false);
+
+            projectService.save(project);
+
+            /*// get current user
+            String username = principal.getName();
+            User user = this.userRepository.getUserByUserName(username);
+
+            // delete contact only current user
+            if (user.getId() == contact.getUser().getId()) {
+                this.contactRepository.delete(contact);
+
+                session.setAttribute("message", new MyMessage("Contact deleted Successfully", "alert-success"));
+            }*/
+
+        }
+        return "redirect:/user/view-projects/0";
     }
 
 

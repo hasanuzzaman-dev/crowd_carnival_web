@@ -114,7 +114,7 @@
 <!--Sweet Alert-->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    function deleteContact(cid) {
+    function deleteProject(projectId) {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this project!",
@@ -127,7 +127,7 @@
                     /*swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });*/
-                    window.location = "/user/delete/" + cid;
+                    window.location = "/admin/delete/" + projectId;
                 } else {
                     swal("Your project is safe!");
                 }

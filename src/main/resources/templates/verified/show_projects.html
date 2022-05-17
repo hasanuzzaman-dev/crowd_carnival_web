@@ -28,34 +28,27 @@
                 <tr>
                     <th scope="col">#ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">Total Cost of Project</th>
+                    <th scope="col">Termination Time</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="c : ${contacts}">
-                    <th scope="row" th:text="${'SCM-'+c.cId}">1</th>
+                <tr th:each="p : ${projects}">
+                    <th scope="row" th:text="${'CCP-'+p.projectId}">1</th>
 
                     <td>
-                        <img class="my-profile-picture" th:src="@{'/img/contactImage/'+${c.imageUrl}}"/>
-                        <span th:text="${' '+c.name}"></span>
+                        <span th:text="${' '+p.projectName}"></span>
                     </td>
 
                     <td>
-                        <a th:href="@{'/user/'+${c.cId}+'/contact'}">
-                            <span th:text="${c.email}"></span>
-                        </a>
+                        <span th:text="${' '+p.totalCostOfProject+' TK'}"></span>
                     </td>
-                    <td th:text="${c.phone}">@mdo</td>
+                    <td th:text="${p.bookingTerminationTime}">@mdo</td>
                     <td>
-                       <!-- <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger btn-sm">Delete</a> -->
-                        <a th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger btn-sm">Delete</a>
-                        <!--Post request handler-->
-                        <form th:action="@{'/user/update-contact/'+${c.cId}}" method="post" class="mt-2">
-                            <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                        </form>
-                       <!-- <button class="btn btn-info btn-sm">Update</button>-->
+                        <!-- <a th:href="@{'/user/delete/'+${c.cId}}" class="btn btn-danger btn-sm">Delete</a> -->
+                        <!--Study the project-->
+                        <a th:href="@{'/user/'+${p.projectId}+'/project'}" class="btn btn-success btn-sm">Study</a>
                     </td>
                 </tr>
                 </tbody>
