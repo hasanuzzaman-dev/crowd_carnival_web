@@ -74,6 +74,7 @@ public class AdminController {
                 // image save to static folder
                 File saveFile = new ClassPathResource("static/img").getFile();
 
+
                 Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + multipartFile.getOriginalFilename());
                 Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("File is Uploaded");
@@ -81,6 +82,7 @@ public class AdminController {
 
             project.setProjectCreateDate(new Timestamp(System.currentTimeMillis()));
             project.setUsers(Collections.singleton(user));
+            project.setProjectCreateDate(new Timestamp(System.currentTimeMillis()));
 
             user.getProjects().add(project);
             this.userService.save(user);
@@ -91,10 +93,6 @@ public class AdminController {
             session.setAttribute("message", new MyMessage("Project added Successfully!! ", "alert-success"));
 
             return "verified/add_project_form";
-
-
-
-
         }catch (Exception e){
             e.printStackTrace();
             model.addAttribute("project", project);
