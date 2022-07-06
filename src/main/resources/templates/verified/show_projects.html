@@ -11,7 +11,7 @@
 <section>
     <div class="card ml-3 ms-3">
         <div class="card-body">
-            <h1 class="text-center">Your Projects</h1>
+            <h1 class="text-center">Projects</h1>
 
             <!--Search-->
             <div class="search-container my-4">
@@ -56,7 +56,7 @@
             <!--Pagination start-->
             <div class="container text-center">
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination">
+                    <ul class="pagination justify-content-center">
                         <li class="page-item" th:classappend="${currentPage == 0 ? 'disabled':''}">
                             <a class="page-link" th:href="@{'/user/show-contacts/'+ ${currentPage -1}}" href="#">Previous</a>
                         </li>

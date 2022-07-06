@@ -9,8 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.hasan</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>CrowdCarnival</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>Crowd Carnival</name>
     <description>Crowd Carnival project for Spring Boot</description>
     <properties>
@@ -80,8 +81,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
-            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
 
 
@@ -89,6 +89,7 @@
     </dependencies>
 
     <build>
+        <finalName>crowd-carnival</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
